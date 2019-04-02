@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@SpringBootApplication
 //@EnableTransactionManagement
 //@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+/*
+    启动方法
+ */
 @SpringBootApplication
 @MapperScan("www.grapeaction.com.dao")
 public class GrapeactionApplication {
