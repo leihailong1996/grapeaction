@@ -41,5 +41,9 @@ public class GrapeUserServiceImpl implements GrapeUserService {
         return grapeUserDao.updateGrapeUser(grapeUser);
     }
 
+    @Override
+    public int updateGrapeUser1(GrapeUser grapeUser) {
+        return 0;
+    }
 }
 
