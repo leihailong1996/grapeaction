@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.grapeaction.com.dao.DemoDao">
+    <resultMap id="BaseResultMap" type="www.grapeaction.com.pojo.Demo">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="sex" property="sex" />
+        <result column="old" property="old" />
+    </resultMap>
+
+    <select id="findAllDemo" resultType ="www.grapeaction.com.pojo.Demo"  parameterType="java.util.Map">
+        select *
+        from demo
+        <if test="map.size() > 0 ">
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} like CONCAT('%', #{map[${key}]},'%')
+            </foreach>
+        </if>
+    </select>
+    <!--自动返回主键id-->
+    <insert id="insertDemo" useGeneratedKeys="true"  keyProperty="id"  parameterType="www.grapeaction.com.pojo.Demo">
+        INSERT INTO demo (name,old,sex)
+              VALUES   (#{name},
+                          #{old},
+                          #{sex}
+                        )
+    </insert>
+    <update id="updateDemo" parameterType="www.grapeaction.com.pojo.Demo">
+           update demo set
+            <if test="name  != null " > name =#{name} </if>
+            <if test="name  != null " >, </if>
+            <if test="old  != null " > old =#{old}</if>
+            <if test="old  != null " > ,</if>
+            <if test="sex  != null " > sex =#{sex}</if>
+           where id =#{id}
+    </update>
+
+    <delete id="deleteDemo"  parameterType="java.lang.Integer">
+        delete from   demo where id =#{id}
+    </delete>
+</mapper>

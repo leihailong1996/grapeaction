@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.grapeaction.com.dao.BodyDao">
+    <resultMap id="BaseResultMap" type="www.grapeaction.com.pojo.Body">
+        <result column="bodyId" property="bodyId"  />
+        <result column="bodyName" property="bodyName" />
+        <result column="bodyTypeId" property="bodyTypeId"   />
+        <result column="bodyNo" property="bodyNo"  />
+        <result column="flag" property="flag" />
+        <result column="createdate" property="createdate" />
+        <result column="importPrice" property="importPrice" />
+        <result column="sellPrice" property="sellPrice" />
+    </resultMap>
+
+    <select id="getBodyList" resultType ="www.grapeaction.com.pojo.Body"  parameterType="java.util.Map">
+    select *
+    from body
+    <if test="map.size() > 0 ">
+        where
+        <foreach collection="map.keys" separator="and" item="key" index="index">
+            ${key} like CONCAT('%', #{map[${key}]},'%')
+        </foreach>
+    </if>
+
+</select>
+
+    <update id="updateBody" parameterType="www.grapeaction.com.pojo.Body">
+        update  body set
+        <if test="bodyName  != null " > bodyName =#{bodyName} </if>
+        <if test="bodyName  != null " >, </if>
+        <if test="bodyTypeId  != null " > bodyTypeId =#{bodyTypeId}</if>
+        <if test="bodyTypeId  != null " > ,</if>
+        <if test="bodyNo  != null " > bodyNo =#{bodyNo} </if>
+        <if test="bodyNo  != null " >, </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " > ,</if>
+        <if test="createDate  != null " > createDate =#{createDate}</if>
+        <if test="createDate  != null " > ,</if>
+        <if test="importPrice  != null " > importPrice =#{importPrice}</if>
+        <if test="importPrice  != null " > ,</if>
+        <if test="sellPrice  != null " > sellPrice =#{sellPrice}</if>
+        where bodyId =#{bodyId}
+    </update>
+
+    <insert id="insertBody" useGeneratedKeys="true" keyProperty="id" parameterType="www.grapeaction.com.pojo.Body" >
+        insert  into body (bodyName,bodyTypeId,bodyNo,flag,createdate,importPrice,sellPrice)
+        values (#{bodyName},#{bodyTypeId},#{bodyNo},#{flag},#{createdate},#{importPrice},#{sellPrice});
+    </insert>
+
+    <delete id="deleteBody"  parameterType="www.grapeaction.com.pojo.Body">
+        delete from body where configid =#{configid}
+        <if test="bodyName  != null " > bodyName =#{bodyName} </if>
+        <if test="bodyName  != null " > and  </if>
+        <if test="bodyTypeId  != null " > bodyTypeId =#{bodyTypeId}</if>
+        <if test="bodyTypeId  != null " >  and </if>
+        <if test="bodyNo  != null " > bodyNo =#{bodyNo} </if>
+        <if test="bodyNo  != null " > and  </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " > and </if>
+        <if test="createDate  != null " > createDate =#{createDate}</if>
+        <if test="createDate  != null " >  and </if>
+        <if test="importPrice  != null " > importPrice =#{importPrice}</if>
+        <if test="importPrice  != null " >  and </if>
+        <if test="sellPrice  != null " > sellPrice =#{sellPrice}</if>
+    </delete>
+</mapper>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品</title>
+    <link rel="stylesheet" href="../../js/tree/jquery.treeview.css">
+    <link rel="stylesheet" href="../../js/admin/adminMenu.css">
+    <link rel="stylesheet" href="../../js/bootstarp/bootstrap.min.css">
+    <script src="../../js/bootstarp/bootstrap.min.js"></script>
+    <script src="../../js/tree/jquery.min.js"></script>
+    <script src="../../js/tree/jquery.treeview.js" ></script>
+    <script src="../../js/cookie.js"></script>
+    <script src="../../js/admin/adminMenu.js" ></script>
+</head>
+<body>
+<div  class="mainBody" >
+    <div class="leftBody">
+        <h3>菜单管理</h3>
+        <div >
+            <table style="width: 80%" class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+            <ul id="menuList" class="filetree treeview-famfamfam"></ul>
+        </div>
+    </div>
+    <div class="rightBody">
+        <h3>修改菜单</h3>
+        <table style="width: 100%" class="table">
+            <input type="hidden" name="menuId" />
+            <TR>
+                <TD width="40%">菜单名字</TD>
+                <TD width="60%"><input type="text" name="menuName"   style="border: none"/></TD>
+            </TR>
+            <TR>
+                <TD>状态</TD>
+                <TD>
+                    <!--<input type="text" name="flag"  style="border: none"/>-->
+                    <input name="flag" type="radio" value="0"/>关闭菜单
+                    <input name="flag" type="radio" value="1"/>打开菜单
+                    <input name="flag" type="radio" value="2"/>需要权限
+                </TD>
+            </TR>
+            <TR>
+                <TD>父类菜单</TD>
+                <TD><input type="text" name="parentMenuId"  style="border: none"/></TD>
+            </TR>
+            <TR>
+                <TD width="40%">菜单等级</TD>
+                <TD width="60%"><input type="text" name="menuLevel"  style="border: none"/></TD>
+            </TR>
+            <TR>
+                <TD>菜单路径</TD>
+                <TD><input type="text" name="menuUrl"  style="border: none"/></TD>
+            </TR>
+            <TR>
+                <TD>菜单作用</TD>
+                <TD><input type="text" name="mean"  style="border: none"/></TD>
+            </TR>
+            <TR>
+                <TD><input  type="button" value="保存" onclick="updateMenu()"/></TD>
+                <TD></TD>
+            </TR>
+        </table>
+    </div>
+</div>
+
+  <!--<table border="1" width="100%">
+      <input type="hidden" name="menuId" />
+      <TR>
+          <TD width="40%">
+              <h1 >菜单管理</h1>
+          </TD>
+          <TD width="60%">
+              <h1 >修改菜单</h1>
+          </TD>
+      </TR>
+      <TR>
+          <TD>
+              <ul id="menuList" class="filetree treeview-famfamfam">
+              </ul>
+          </TD>
+          <TD>
+              <table border="1" width="100%">
+                  <TR>
+                      <TD width="40%">菜单名字</TD>
+                      <TD width="60%"><input type="text" name="menuName" /></TD>
+                  </TR>
+                  <TR>
+                      <TD>状态</TD>
+                      <TD><input type="text" name="flag" /></TD>
+                  </TR>
+                  <TR>
+                      <TD>父类菜单</TD>
+                      <TD><input type="text" name="parentMenuId" /></TD>
+                  </TR>
+                  <TR>
+                      <TD width="40%">菜单等级</TD>
+                      <TD width="60%"><input type="text" name="menuLevel" /></TD>
+                  </TR>
+                  <TR>
+                      <TD>菜单路径</TD>
+                      <TD><input type="text" name="menuUrl" /></TD>
+                  </TR>
+                  <TR>
+                      <TD>菜单作用</TD>
+                      <TD><input type="text" name="mean" /></TD>
+                  </TR>
+                  <TR>
+                      <TD><input  type="button" value="保存" onclick="updateMenu()"/></TD>
+                      <TD></TD>
+                  </TR>
+              </table>
+          </TD>
+      </TR>
+  </table>-->
+</body>
+</html>

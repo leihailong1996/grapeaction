@@ -1,0 +1,47 @@
+/*
+.body {
+    background: -webkit-radial-gradient(circle, white 10%, transparent 10%),  -webkit-radial-gradient(circle, white 10%, #25BAD1 10%) 50px 50px;
+    background: radial-gradient(circle, white 10%, transparent 10%),  radial-gradient(circle, white 10%, #25BAD1 10%) 50px 50px;
+    background-size: 100px 100px;
+}
+*/
+
+
+.titleDiv{
+    margin:0 auto;
+    left:35%;
+    top:15%;
+    width:250px;
+    height:100px;
+}
+.loginTable{
+    margin:0 auto;
+    left:35%;
+    top:10%;
+    width:300px;
+    height:200px;
+}
+
+span{
+    font-size: 20px;
+    font-weight:bold;
+}
+
+h1{
+    font-weight:bold;
+}
+
+
+html, body, .mainBody{
+    width: 100%;
+    height:100%;
+    position:relative;
+    background-color: #25BAD1;
+}
+.littleDiv{
+    width:30%;
+    height:50%;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}

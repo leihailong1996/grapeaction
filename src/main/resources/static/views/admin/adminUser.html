@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品</title>
+    <link rel="stylesheet" href="../../js/admin/adminUser.css">
+    <link rel="stylesheet" href="../../js/bootstarp/bootstrap.min.css">
+    <script src="../../js/cookie.js"></script>
+    <script src="../../js/bootstarp/jquery.min.js"></script>
+    <script src="../../js/bootstarp/bootstrap.min.js"></script>
+    <script src="../../js/admin/adminUser.js"></script>
+</head>
+<body>
+<div  class="mainBody" >
+    <div class="leftBody">
+        <h3>用户管理列表</h3>
+        <div >
+            <table style="width: 80%" class="table">
+                <thead>
+                <tr>
+                    <th style="width: 20%">用户名</th>
+                    <th style="width: 60%">创建时间</th>
+                    <th style="width: 20%">状态</th>
+                </tr>
+                </thead>
+                <tbody id="adminUserList"></tbody>
+            </table>
+        </div>
+        <div >
+            <ul class="pagination" id="fenYe"> </ul>
+        </div>
+    </div>
+    <div class="rightBody">
+       <h3>用户修改</h3>
+        <table style="width: 100%" class="table">
+            <tr>
+                <th style="width: 30%">用户名</th>
+                <td style="width: 70%"><input type="text" style="border: none" name="userName" /></td>
+            </tr>
+            <tr>
+                <th style="width: 30%">密码</th>
+                <td style="width: 70%"><input type="text" style="border: none" name="password"/></td>
+            </tr>
+            <tr>
+                <th style="width: 30%">状态</th>
+                <td style="width: 70%">
+                    <input name="flag" type="radio" value="0"/>停用&nbsp;
+                    <input name="flag" type="radio" value="1"/>在用
+                    <!--<input type="text" style="border: none" name="flag"/>-->
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%">权限</th>
+                <td style="width: 70%" id="powerCheckBox"></td>
+            </tr>
+            <tr>
+                <td style="width: 30%">创建日期</td>
+                <td style="width: 70%"><input type="text" style="width:300px;border: none" readonly="true" name="createdate"/></td>
+            </tr>
+            <tr>
+                <td style="width: 30%"><input type="button" value="新建用户" onclick="newUser()"/></td>
+                <td style="width: 70%">
+                    <input type="button" value="保存" onclick="updateGrapeUser()"/>
+                    <input type="button" value="重置" onclick="chongZhi()"/>
+                    <input type="hidden" style="border: none" name="userId"/>
+                    <input type="button" value="校验用户信息" onclick="checkPowerEveryOne()"/>(校验所有用户权限信息)
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--<table border="1" width="100%">
+    <tr>
+        <td width="40%"><h1>用户列表</h1></td>
+        <td width="60%"><h1>编辑用户和权限分配</h1></td>
+    </tr>
+    <tr>
+        <td id="useList"></td>
+        <td>
+            <table border="1" width="100%">
+                <tr>
+                    <td width="40%">用户名：</td>
+                    <td width="60%"><input type="text" name="userName" /><input type="hidden" name="userId" /></td>
+                </tr>
+                <tr>
+                    <td>状态：</td>
+                    <td><input type="text" name="flag"/></td>
+                </tr>
+                <tr>
+                    <td>密码</td>
+                    <td><input type="text" name="password"/></td>
+                </tr>
+                <tr>
+                    <td>权限：</td>
+                    <td><input type="text" /></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>-->
+</body>
+</html>

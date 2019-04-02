@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.grapeaction.com.dao.GrapeUserDao">
+    <resultMap id="BaseResultMap" type="www.grapeaction.com.pojo.GrapeUser">
+        <result column="userId" property="userId"  />
+        <result column="userName" property="userName" />
+        <result column="password" property="password" />
+        <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="flag" property="flag"/>
+    </resultMap>
+
+    <select id="findAllGrapeUserGrapeUser" resultType ="www.grapeaction.com.pojo.GrapeUser"  parameterType="java.util.Map">
+        select *
+        from grapeUser
+        <if test="map.size>0  and  true"   >
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} = #{map[${key}]}
+            </foreach>
+        </if>
+    </select>
+   <!-- <select id="findAllGrapeUserGrapeUser" resultType ="www.grapeaction.com.pojo.GrapeUser"  parameterType="java.util.Map">
+        select *
+        from grapeUser
+        <if test="map.size>0  and  true"   >
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} like CONCAT('%', #{map[${key}]},'%')
+            </foreach>
+        </if>
+    </select>-->
+
+    <select id="getGrapeUserSumNum" resultType ="java.lang.Integer"  parameterType="java.util.Map">
+        select count(*)
+        from grapeUser
+        <if test="map.size() > 0">
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} like CONCAT('%', #{map[${key}]},'%')
+            </foreach>
+        </if>
+    </select>
+
+    <update id="updateGrapeUser" parameterType="www.grapeaction.com.pojo.GrapeUser">
+        update  grapeUser set
+        <if test="userName  != null " > userName =#{userName} </if>
+        <if test="userName  != null " >, </if>
+        <if test="password  != null " > password =#{password}</if>
+        <if test="password  != null " > ,</if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        where userId =#{userId}
+    </update>
+
+    <insert id="insertGrapeUser" useGeneratedKeys="true" keyProperty="id" parameterType="www.grapeaction.com.pojo.GrapeUser" >
+        insert  into grapeUser (userName,password,createDate,flag)
+        values (#{userName},#{password},#{createDate},#{flag});
+    </insert>
+
+</mapper>

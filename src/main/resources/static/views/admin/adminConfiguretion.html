@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统配置项表</title>
+    <link rel="stylesheet" href="../../js/admin/adminConfiguretion.css">
+    <link rel="stylesheet" href="../../js/bootstarp/bootstrap.min.css">
+    <script src="../../js/bootstarp/jquery.min.js"></script>
+    <script src="../../js/bootstarp/bootstrap.min.js"></script>
+    <script src="../../js/cookie.js"></script>
+    <script src="../../js/admin/adminConfiguretion.js"></script>
+</head>
+<body>
+<div  class="mainBody" >
+    <div class="leftBody">
+        <h3>配置项列表</h3>
+        <div >
+            <table style="width: 80%" class="table">
+                <thead>
+                <tr>
+                    <th style="width: 20%">键值</th>
+                    <th style="width: 60%">配置项的值</th>
+                    <th style="width: 20%">状态</th>
+                </tr>
+                </thead>
+                <tbody id="adminConfiguretionList"></tbody>
+            </table>
+        </div>
+        <div >
+            <ul class="pagination" id="fenYe"> </ul>
+        </div>
+    </div>
+    <div class="rightBody">
+        <h3>配置更改</h3>
+        <table style="width: 100%" class="table">
+            <tr>
+                <th style="width: 30%">键值</th>
+                <td style="width: 70%"><input type="text" style="border: none" id="configname" name="configname" readonly="true"/></td>
+            </tr>
+            <tr>
+                <th style="width: 30%">值</th>
+                <td style="width: 70%"><input type="text" style="border: none" id="configvalue"  name="configvalue"/></td>
+            </tr>
+            <tr>
+                <th style="width: 30%">状态</th>
+                <td style="width: 70%"><input type="text"  id="flag"  style="border: none" name="flag"/></td>
+            </tr>
+            <tr>
+                <td style="width: 30%">作用</td>
+                <!--<th style="width: 70%"><input type="text" style="height:100px;border: none;" name="mean"/></th>-->
+                <td style="width: 70%">
+                    <textarea style="width:400px;height:150px;border: none;" id="mean"   name="mean"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 30%">创建日期</td>
+                <td style="width: 70%"><input type="text" style="width:300px;border: none" readonly="true" id="createdate" name="createdate"/></td>
+            </tr>
+            <tr>
+                <td style="width: 30%"></td>
+                <td style="width: 70%">
+                    <input type="button" value="保存" onclick="updateCinfigurtion()"/>
+                    <input type="button" value="重置" onclick="chongZhi()"/>
+                    <input type="hidden" style="border: none" name="configid" id="configid"/></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.grapeaction.com.dao.PowerDao">
+    <resultMap id="BaseResultMap" type="www.grapeaction.com.pojo.Power">
+        <result column="powerId" property="powerId"></result>
+        <result column="menuId" property="menuId"></result>
+        <result column="userId" property="userId"></result>
+        <result column="flag" property="flag"></result>
+        <result column="createdate" property="createdate"></result>
+
+    </resultMap>
+
+    <select id="getPowerList" resultType ="www.grapeaction.com.pojo.Power"  parameterType="java.util.Map">
+        select *
+        from Power
+        <if test="map.size() > 0 ">
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} =#{map[${key}]}
+            </foreach>
+        </if>
+
+    </select>
+   <!-- <select id="getPowerList" resultType ="www.grapeaction.com.pojo.Power"  parameterType="java.util.Map">
+        select *
+        from Power
+        <if test="map.size() > 0 ">
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} like CONCAT('%', #{map[${key}]},'%')
+            </foreach>
+        </if>
+
+    </select>-->
+
+    <!--<update id="updatePower" parameterType="www.grapeaction.com.pojo.Power">
+        update  power set
+        <if test="menuId  != null " > menuId =#{menuId} </if>
+        <if test="menuId  != null " >, </if>
+        <if test="userId  != null " > userId =#{userId}</if>
+        <if test="userId  != null " > ,</if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        where powerId =#{powerId}
+    </update>-->
+
+    <update id="updatePower" parameterType="www.grapeaction.com.pojo.Power" >
+        update  power set  flag =#{flag}
+        where menuId =#{menuId} and userId=#{userId}
+    </update>
+    <insert id="insertPower" useGeneratedKeys="true" keyProperty="id" parameterType="www.grapeaction.com.pojo.Power" >
+       insert  into power (menuId,userId,flag,createdate)
+      values (#{menuId},#{userId},#{flag},#{createdate});
+    </insert>
+
+    <delete id="deletePower"  parameterType="www.grapeaction.com.pojo.Power">
+        delete from Power
+         where powerId =#{powerId}
+        <if test="menuId  != null " > menuId =#{menuId} </if>
+        <if test="menuId  != null " > and  </if>
+        <if test="userId  != null " > userId =#{userId}</if>
+        <if test="userId  != null " >  and </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " >  and </if>
+        <if test="createDate  != null " > createDate =#{createDate}</if>
+    </delete>
+
+</mapper>

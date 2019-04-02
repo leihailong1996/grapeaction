@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.grapeaction.com.dao.BodyTypeDao">
+    <resultMap id="BaseResultMap" type="www.grapeaction.com.pojo.BodyType">
+        <result column="bodyTypeId" property="bodyTypeId"  />
+        <result column="bodyTypeName" property="bodyTypeName" />
+        <result column="ParentBodyTypeId" property="ParentBodyTypeId"   />
+        <result column="bodyTypeLevel" property="bodyTypeLevel"  />
+        <result column="flag" property="flag" />
+        <result column="createdate" property="createdate" />
+    </resultMap>
+
+
+
+    <select id="getBodyTypeList" resultType ="www.grapeaction.com.pojo.BodyType"  parameterType="java.util.Map">
+        select *
+        from bodyType
+        <if test="map.size() > 0 ">
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} like CONCAT('%', #{map[${key}]},'%')
+            </foreach>
+        </if>
+    </select>
+
+
+    <update id="updateBodyList" parameterType="www.grapeaction.com.pojo.BodyType">
+        update  bodyType set
+        <if test="bodyTypeName  != null " > bodyTypeName =#{bodyTypeName} </if>
+        <if test="bodyTypeName  != null " >, </if>
+        <if test="ParentBodyTypeId  != null " > ParentBodyTypeId =#{ParentBodyTypeId}</if>
+        <if test="ParentBodyTypeId  != null " > ,</if>
+        <if test="bodyTypeLevel  != null " > bodyTypeLevel =#{bodyTypeLevel} </if>
+        <if test="bodyTypeLevel  != null " >, </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " > ,</if>
+        <if test="createDate  != null " > createDate =#{createDate}</if>
+        where bodyTypeId =#{bodyTypeId}
+    </update>
+
+    <insert id="insertBodyList" useGeneratedKeys="true" keyProperty="id" parameterType="www.grapeaction.com.pojo.BodyType" >
+        insert  into bodyType (bodyTypeName,ParentBodyTypeId,bodyTypeLevel,flag,createdate)
+        values (#{bodyTypeName},#{ParentBodyTypeId},#{bodyTypeLevel},#{flag},#{createdate});
+    </insert>
+
+    <delete id="deleteBodyList"  parameterType="www.grapeaction.com.pojo.BodyType">
+        delete from bodyType where bodyTypeId =#{bodyTypeId}
+        <if test="bodyTypeName  != null " > bodyTypeName =#{bodyTypeName} </if>
+        <if test="bodyTypeName  != null " > and  </if>
+        <if test="ParentBodyTypeId  != null " > ParentBodyTypeId =#{ParentBodyTypeId}</if>
+        <if test="ParentBodyTypeId  != null " >  and </if>
+        <if test="bodyTypeLevel  != null " > bodyTypeLevel =#{bodyTypeLevel} </if>
+        <if test="bodyTypeLevel  != null " > and </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " >  and </if>
+        <if test="createDate  != null " > createDate =#{createDate}</if>
+    </delete>
+</mapper>

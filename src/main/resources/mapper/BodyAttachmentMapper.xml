@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.grapeaction.com.dao.BodyAttachmentDao">
+    <resultMap id="BaseResultMap" type="www.grapeaction.com.pojo.BodyAttachment">
+        <result column="bodyAttachmentId" property="bodyAttachmentId"  />
+        <result column="bodyAttachmentValue" property="bodyAttachmentValue"  />
+        <result column="bodyId" property="bodyId"   />
+        <result column="bodyNo" property="bodyNo"  />
+        <result column="flag" property="flag" />
+        <result column="createdate" property="createdate" />
+        <result column="bodyAttachmentSort" property="bodyAttachmentSort" />
+        <result column="bodyAttachmentType" property="bodyAttachmentType" />
+    </resultMap>
+
+   <select id="getBodyAttachmentList" resultType ="www.grapeaction.com.pojo.BodyAttachment"  parameterType="java.util.Map">
+    select *
+    from bodyAttachment
+    <if test="map.size() > 0 ">
+        where
+        <foreach collection="map.keys" separator="and" item="key" index="index">
+            ${key} like CONCAT('%', #{map[${key}]},'%')
+        </foreach>
+    </if>
+
+  </select>
+
+    <update id="updateBodyAttachment" parameterType="www.grapeaction.com.pojo.BodyAttachment">
+        update  bodyAttachment set
+        <if test="bodyAttachmentName  != null " > bodyAttachmentName =#{bodyAttachmentName} </if>
+        <if test="bodyAttachmentName  != null " >, </if>
+        <if test="bodyAttachmentValue  != null " > bodyAttachmentValue =#{bodyAttachmentValue}</if>
+        <if test="bodyAttachmentValue  != null " > ,</if>
+        <if test="bodyId  != null " > bodyId =#{bodyId} </if>
+        <if test="bodyId  != null " >, </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " > ,</if>
+        <if test="createDate  != null " > createDate =#{createDate}</if>
+        <if test="createDate  != null " > ,</if>
+        <if test="bodyAttachmentSort  != null " > bodyAttachmentSort =#{bodyAttachmentSort}</if>
+        <if test="bodyAttachmentSort  != null " > ,</if>
+        <if test="bodyAttachmentType  != null " > sellPrice =#{bodyAttachmentType}</if>
+        where bodyAttachmentId =#{bodyAttachmentId}
+    </update>
+
+    <insert id="insertBodyAttachment" useGeneratedKeys="true" keyProperty="id" parameterType="www.grapeaction.com.pojo.BodyAttachment" >
+        insert  into bodyAttachment (bodyAttachmentName,bodyAttachmentValue,bodyId,flag,createdate,bodyAttachmentSort,bodyAttachmentType)
+        values (#{bodyAttachmentName},#{bodyAttachmentValue},#{bodyId},#{flag},#{createdate},#{bodyAttachmentSort},#{bodyAttachmentType});
+    </insert>
+
+    <delete id="deleteBodyAttachment"  parameterType="www.grapeaction.com.pojo.BodyAttachment">
+        delete from bodyAttachment where bodyAttachmentId =#{bodyAttachmentId}
+        <if test="bodyAttachmentName  != null " > bodyAttachmentName =#{bodyAttachmentName} </if>
+        <if test="bodyAttachmentName  != null " > and  </if>
+        <if test="bodyAttachmentValue  != null " > bodyAttachmentValue =#{bodyAttachmentValue}</if>
+        <if test="bodyAttachmentValue  != null " >  and </if>
+        <if test="bodyId  != null " > bodyId =#{bodyId} </if>
+        <if test="bodyId  != null " > and  </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " >  and </if>
+        <if test="createDate  != null " > createDate =#{createDate}</if>
+        <if test="createDate  != null " >  and </if>
+        <if test="bodyAttachmentSort  != null " > bodyAttachmentSort =#{bodyAttachmentSort}</if>
+        <if test="bodyAttachmentSort  != null " >  and </if>
+        <if test="bodyAttachmentType  != null " > sellPrice =#{bodyAttachmentType}</if>
+    </delete>
+</mapper>

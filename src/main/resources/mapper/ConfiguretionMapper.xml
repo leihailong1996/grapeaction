@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.grapeaction.com.dao.ConfiguretionDao">
+    <resultMap id="BaseResultMap" type="www.grapeaction.com.pojo.Configuretion">
+        <result column="configid" property="configid"  />
+        <result column="configname" property="configname" />
+        <result column="configvalue" property="configvalue"   />
+        <result column="Flag" property="Flag"  />
+        <result column="mean" property="mean" />
+        <result column="createdate" property="createdate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getConfiguretionList" resultType ="www.grapeaction.com.pojo.Configuretion"  parameterType="java.util.Map">
+        select *
+        from configuretion
+        <if test="map.size() > 0">
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} like CONCAT('%', #{map[${key}]},'%')
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getConfiguretionSumNum" resultType ="java.lang.Integer"  parameterType="java.util.Map">
+        select count(*)
+        from configuretion
+        <if test="map.size() > 0">
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} like CONCAT('%', #{map[${key}]},'%')
+            </foreach>
+        </if>
+    </select>
+
+
+    <update id="updateConfiguretion" parameterType="www.grapeaction.com.pojo.Configuretion">
+        update  configuretion set
+        <if test="configname  != null " > configname =#{configname} </if>
+        <if test="configname  != null " >, </if>
+        <if test="configvalue  != null " > configvalue =#{configvalue}</if>
+        <if test="configvalue  != null " > ,</if>
+        <if test="Flag  != null " > Flag =#{Flag} </if>
+        <if test="Flag  != null " >, </if>
+        <if test="mean  != null " > mean =#{mean}</if>
+        <if test="mean  != null " > ,</if>
+        <if test="createdate  != null " > createdate =#{createdate}</if>
+        where configid =#{configid}
+    </update>
+    <insert id="insertConfiguretion" useGeneratedKeys="true" keyProperty="id" parameterType="www.grapeaction.com.pojo.Configuretion" >
+        insert  into configuretion (configname,configvalue,Flag,mean,createdate)
+        values (#{configname},#{configvalue},#{Flag},#{mean},#{createdate});
+    </insert>
+
+    <delete id="deleteConfiguretion"  parameterType="www.grapeaction.com.pojo.Configuretion">
+        delete from configuretion where configid =#{configid}
+        <if test="configname  != null " > configname =#{configname} </if>
+        <if test="configname  != null " > and </if>
+        <if test="configvalue  != null " > configvalue =#{configvalue}</if>
+        <if test="configvalue  != null " > and </if>
+        <if test="Flag  != null " > Flag =#{Flag} </if>
+        <if test="Flag  != null " > and </if>
+        <if test="mean  != null " > mean =#{mean}</if>
+        <if test="mean  != null " >  and </if>
+        <if test="createdate  != null " > sex =#{createdate}</if>
+    </delete>
+</mapper>

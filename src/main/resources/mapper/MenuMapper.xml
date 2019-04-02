@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.grapeaction.com.dao.MenuDao">
+    <resultMap id="BaseResultMap" type="www.grapeaction.com.pojo.Menu">
+        <result column="menuId" property="menuId"  />
+        <result column="menuName" property="menuName" />
+        <result column="menuUrl" property="menuUrl"   />
+        <result column="mean" property="mean"  />
+        <result column="flag" property="flag" />
+        <result column="createdate" property="createdate" />
+        <result column="parentMenuId" property="parentMenuId" />
+        <result column="menuLevel" property="menuLevel" />
+    </resultMap>
+
+    <select id="getMenuList" resultType ="www.grapeaction.com.pojo.Menu"  parameterType="java.util.Map">
+        select *
+        from menu
+        <if test="map.size>0 ">
+            where
+            <foreach collection="map.keys" separator="and" item="key" index="index">
+                ${key} like CONCAT('%', #{map[${key}]},'%')
+            </foreach>
+        </if>
+
+
+    </select>
+
+    <update id="updateMenu" parameterType="www.grapeaction.com.pojo.Menu">
+        update  menu set
+        <if test="menuName  != null " > menuName =#{menuName} </if>
+        <if test="menuName  != null " >, </if>
+        <if test="menuUrl  != null " > menuUrl =#{menuUrl}</if>
+        <if test="menuUrl  != null " > ,</if>
+        <if test="mean  != null " > mean =#{mean} </if>
+        <if test="mean  != null " >, </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " > ,</if>
+        <if test="createdate  != null " > createdate =#{createdate}</if>
+        <if test="createdate  != null " > ,</if>
+        <if test="parentMenuId  != null " > parentMenuId =#{parentMenuId}</if>
+        <if test="parentMenuId  != null " > ,</if>
+        <if test="menuLevel  != null " > menuLevel =#{menuLevel}</if>
+        where menuId =#{menuId}
+    </update>
+
+    <insert id="insertMenu" useGeneratedKeys="true" keyProperty="id" parameterType="www.grapeaction.com.pojo.Menu" >
+        insert  into menu (menuName,menuUrl,mean,flag,createdate,parentMenuId,menuLevel)
+        values (#{menuName},#{menuUrl},#{mean},#{flag},#{createdate},#{parentMenuId},#{menuLevel});
+    </insert>
+
+    <delete id="deleteMenu"  parameterType="www.grapeaction.com.pojo.Menu">
+        delete from menu where  menuId =#{menuId}
+        <if test="menuName  != null " > menuName =#{menuName} </if>
+        <if test="menuName  != null " >, </if>
+        <if test="menuUrl  != null " > menuUrl =#{menuUrl}</if>
+        <if test="menuUrl  != null " > ,</if>
+        <if test="mean  != null " > mean =#{mean} </if>
+        <if test="mean  != null " >, </if>
+        <if test="flag  != null " > flag =#{flag}</if>
+        <if test="flag  != null " > ,</if>
+        <if test="createdate  != null " > createdate =#{createdate}</if>
+        <if test="createdate  != null " > ,</if>
+        <if test="parentMenuId  != null " > parentMenuId =#{parentMenuId}</if>
+        <if test="parentMenuId  != null " > ,</if>
+        <if test="createdate  != null " > menuLevel =#{menuLevel}</if>
+    </delete>
+</mapper>

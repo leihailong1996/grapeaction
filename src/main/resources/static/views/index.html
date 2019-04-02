@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title id="objectName1">    </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../js/bootstarp/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/bootstarp/jquery.min.js"></script>
+    <script src="../js/bootstarp/jquery.cookie.js"></script>
+    <script src="../js/bootstarp/bootstrap.min.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="../js/configuration.js"></script>
+
+</head>
+<body class="body">
+<div class="mainBody">
+    <div class="littleDiv">
+        <form action="/" method="get">
+            <div class="loginDiv">
+                <div class="titleDiv">
+                    <h1 id="objectName"></h1>
+                </div>
+
+                <table class="loginTable">
+                    <tr>
+                        <td><span>用户名：</span></td>
+                        <td>
+                            <input type="text" id="userName"  name="userName"  />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>密  码：</span></td>
+                        <td>
+                            <input type="password" id="password" name="password"  />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="button" class="btn btn-primary"  onclick="login()">登 陆</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-primary" >重 置</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
