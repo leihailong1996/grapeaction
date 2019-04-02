@@ -9,6 +9,7 @@ import java.util.List;
 public interface GrapeUserService {
     List<GrapeUser> findAllGrapeUserGrapeUser(Page page);
     public int getGrapeUserSumNum(Page page);
+    //111
     public int   insertGrapeUser(GrapeUser grapeUser);
     public int   updateGrapeUser(GrapeUser grapeUser);
 }
