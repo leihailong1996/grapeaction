@@ -18,7 +18,6 @@ public class GrapeUserServiceImpl implements GrapeUserService {
     @Autowired
     private GrapeUserDao grapeUserDao;
 
-
     @Override
     public List<GrapeUser> findAllGrapeUserGrapeUser(Page page) {
         if("0".equals(page.getIsAll())){

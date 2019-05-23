@@ -11,10 +11,6 @@ window.onload=function () {
 function login() {
     var userName=$("#userName").val();
     var password=$("#password").val();
-   /* var userName=$("[name='userName']").val();
-    var password=$("[name='password']").val();*/
-   /* var userName=document.getElementById("userName")
-    var password=document.getElementById("password")*/
     if(userName==""){
         alert("请输入用户名！");
         return ;
@@ -23,7 +19,6 @@ function login() {
         alert("请输入密码！");
         return ;
     }
-
     var json={userName:userName,password:password};
     $.ajax({
         url:"/grapeUserController/findAllGrapeUserGrapeUser",
@@ -33,6 +28,9 @@ function login() {
             if(data.flag==1){
                 SetCookie("userName", data.userName);
                 SetCookie("userId", data.userId);
+                var userUser = data;
+                sessionStorage.setItem("grapeUser", "111");
+
                 loginDoClean();
                 window.location.href="../views/homePage.html";
             }else{

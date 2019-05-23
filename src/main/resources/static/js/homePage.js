@@ -1,4 +1,7 @@
 window.onload=function () {
+    //sessionStorage 是HTML5新增的一个会话存储对象，用于临时保存同一窗口(或标签页)的数据 暂时没有用到
+    //var grapeUser=sessionStorage.getItem("grapeUser");
+    //alert(grapeUser);
     var url="home/home.html";
     var menuURL=getCookie("menuURL");
     if(menuURL!="" && menuURL!=null){

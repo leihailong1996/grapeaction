@@ -2,13 +2,13 @@
 jdk1.9，tomcat，mysql数据库 ，window系统
 
 用到的技术：
-stingboot mvc，mybatis，maven，html5，bootstrop，cookie，ajax（访问数据库全部都是ajax）
+springboot mvc，mybatis，maven，html5，bootstrap，cookie，ajax（访问数据库全部都是ajax）
 
 实现功能
 1：登陆，退出
     用cookie保存了用户，服务器重启，不影响用户正常使用
 2：导航栏显示
-    用了bootstrop的导航栏，读取数据库的菜单表数据。
+    用了bootstrap的导航栏，读取数据库的菜单表数据。
 3：菜单管理
          菜单显示，菜单修改，菜单打开与关于以及菜单权限管理
 4：用户管理

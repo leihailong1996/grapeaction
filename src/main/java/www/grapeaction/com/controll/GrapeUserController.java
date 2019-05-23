@@ -29,7 +29,7 @@ public class GrapeUserController {
     private MenuService menuService;
 
     @RequestMapping("/findAllGrapeUserGrapeUser")
-    public GrapeUser loginDo(HttpServletRequest request){
+    public GrapeUser loginDo(HttpServletRequest request, HttpSession session) {
         String userName =request.getParameter("userName");
         String password =request.getParameter("password");
         Page page =new Page();
@@ -40,8 +40,9 @@ public class GrapeUserController {
         GrapeUser grapeUser;
         if(grapeUserService.findAllGrapeUserGrapeUser(page) !=null && grapeUserService.findAllGrapeUserGrapeUser(page) .size()>=1){
             grapeUser=grapeUserService.findAllGrapeUserGrapeUser(page).get(0);
-            HttpSession sessionName = request.getSession();
-            sessionName.setAttribute("grapeUser1", grapeUser);
+            //暂时没有用 html5好像没有用
+            session.setAttribute("grapeUser1", grapeUser.getUserName());
+            //System.out.println("session=="+session.getAttribute("grapeUser1"));
         }else{
             grapeUser=null;
         }
@@ -60,7 +61,8 @@ public class GrapeUserController {
         return   page;
     }
     @RequestMapping("/getGrapeUserList")
-    public List<GrapeUser> getGrapeUserList(HttpServletRequest request){
+    public List<GrapeUser> getGrapeUserList(HttpServletRequest request, HttpSession session) {
+        System.out.println("sessionList==" + session.getAttribute("grapeUser1"));
         Page page =new Page();
         Map<String,String> map=new HashMap<String, String>();
         String userId = request.getParameter("userId");
